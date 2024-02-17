@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Migration",
+      "request": "launch",
+      "mainClass": "Migration",
+      "projectName": "2024-a1-db-migration-UlviyyaMammadova_c66bb689"
+    }
+  ]
+}
