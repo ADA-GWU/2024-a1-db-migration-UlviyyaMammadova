@@ -20,11 +20,18 @@ public class Rollback {
 
     private static void rollbackMigration(Connection connection) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("ALTER TABLE STUDENTS RENAME COLUMN STUDENT_ID TO ST_ID");
-            statement.executeUpdate("ALTER TABLE STUDENTS ALTER COLUMN ST_NAME TYPE VARCHAR(20)");
-            statement.executeUpdate("ALTER TABLE STUDENTS ALTER COLUMN ST_LAST TYPE VARCHAR(20)");
-            statement.executeUpdate("ALTER TABLE INTERESTS RENAME COLUMN INTERESTS TO INTEREST");
-            statement.executeUpdate("ALTER TABLE INTERESTS ALTER COLUMN INTEREST TYPE VARCHAR(255)");
+            // Drop the INTERESTS table
+            statement.executeUpdate("DROP TABLE IF EXISTS INTERESTS");
+    
+            // Recreate the INTERESTS table with original structure
+            statement.executeUpdate("CREATE TABLE INTERESTS (STUDENT_ID INTEGER, INTEREST VARCHAR(20))");
+    
+            // Reinsert data in original format
+            statement.executeUpdate("INSERT INTO INTERESTS (STUDENT_ID, INTEREST) VALUES " +
+                    "(1, 'Tennis'), (1, 'Literature'), (1, 'Chemistry'), " +
+                    "(2, 'Math'), (2, 'Tennis'), (2, 'Football'), " +
+                    "(3, 'Math'), (3, 'Music'), (3, 'Chess')");
         }
     }
+    
 }
