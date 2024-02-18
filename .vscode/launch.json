@@ -7,6 +7,14 @@
       "request": "launch",
       "mainClass": "Migration",
       "projectName": "2024-a1-db-migration-UlviyyaMammadova_c66bb689"
+    },
+
+    {
+      "type": "java",
+      "name": "Rollback",
+      "request": "launch",
+      "mainClass": "Rollback",
+      "projectName": "2024-a1-db-migration-UlviyyaMammadova_c66bb689"
     }
   ]
 }
